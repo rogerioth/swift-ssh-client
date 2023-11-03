@@ -1,20 +1,35 @@
-// swift-tools-version: 5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "SSHClient",
+        platforms: [
+        .macOS(.v10_15),
+        .iOS(.v15),
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SSHClient",
             targets: ["SSHClient"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-atomics.git", from: "1.2.0"),
+        .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.5"),
+        .package(url: "https://github.com/apple/swift-crypto.git", from: "1.1.7"),
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.61.1"),
+        .package(url: "https://github.com/apple/swift-nio-ssh.git", from: "0.8.0"),
+        .package(url: "https://github.com/apple/swift-nio-transport-services.git", from: "1.20.0")
+    ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SSHClient")
+            name: "SSHClient",
+            dependencies: [
+                .product(name: "Atomics", package: "swift-atomics"),
+                .product(name: "Collections", package: "swift-collections"),
+                .product(name: "Crypto", package: "swift-crypto"),
+                .product(name: "NIO", package: "swift-nio"),
+                .product(name: "NIOSSH", package: "swift-nio-ssh"),
+                .product(name: "NIOTransportServices", package: "swift-nio-transport-services")
+            ])
     ]
 )
