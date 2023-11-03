@@ -1,10 +1,26 @@
 # Swift SSH Client
 
+*Forked from* https://github.com/gaetanzanella/swift-ssh-client
+
+- Added another SPM definition including precise dependency versions;
+- Added a .xcodeproj to handle build configurations
+- Motivated by CI issues experienced with original repository
+
 This project provides high-level SSH client interfaces using [SwiftNIO SSH](https://github.com/apple/swift-nio-ssh).
+
+## Integration
+
+Integrate via SPM:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/rogerioth/swift-ssh-client.git", from: "1.0.1")
+],
+```
 
 ## Requirements
 
-`Swift SSH Client` is compatible with iOS 13.0+ and macOS 10.5+.
+`Swift SSH Client` is compatible with iOS 13.0+ and macOS 10.15+.
 
 ## Getting started
 
